@@ -6,10 +6,10 @@ Some of the functions were taken from her repository at: https://github.com/nikk
 
 In the synthetic tests and real data tests folders, get graphs by running:
 
-synth_mean
-synth_real
-synth_div
-synth_incr_n_m
-real_mean
-real_real
+synth_mean,
+synth_real,
+synth_div,
+synth_incr_n_m,
+real_mean,
+real_real,
 real_div
