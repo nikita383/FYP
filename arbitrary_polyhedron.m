@@ -1,11 +1,11 @@
-clear; clc;
+% clear; clc;
 rng(5)
-s = [0 10];
+s = [2 2];
 r_gen = randn(334,1);
 r1 = normrnd(s(1).*r_gen,1);
 r2 = normrnd(s(2).*r_gen,1);
-y = [r1 r2];
-
+% y = [r1 r2];
+y=data;
 M = cov(y);%2x2
 % Calculate the eigenvectors and eigenvalues
 [eigenvec, eigenval ] = eig(M);
@@ -33,7 +33,7 @@ end
 % Get the 95% confidence interval error
 chisquare_val = 2.4477;
 phi = angle;
-a=chisquare_val*sqrt(smallest_eigenval);
+a=chisquare_val*sqrt(largest_eigenval);
 b=chisquare_val*sqrt(smallest_eigenval);
 
 %Rotation
@@ -43,8 +43,8 @@ figure
 hold on
 
 %% Intersection norm
-colour = ['k', 'g', 'r', 'b'];
-ltype = ["-"; "--"; ":"; "-"];
+colour = ['k', 'g', 'm', 'b'];
+ltype = ["-"; ":"; ":"; "-"];
 lw = [1 1 1.5 1];
 c=1;
 for Gamma = [2, 1.5, 1.3, 1]
@@ -61,12 +61,14 @@ end
 % r_ellipse = [ellipse_x_r;ellipse_y_r]' * R;
 % e = plot( r_ellipse(:,1), r_ellipse(:,2), 'Color',[0.4660 0.6740 0.1880], LineWidth=1);
 
-% %% data
-% d= plot(y(:,1), y(:,2), 'k.');
-% mindata = min(min(y));
-% maxdata = max(max(y));
-% xlim([(mindata -2) (maxdata+2)]);
-% ylim([(mindata -2) (maxdata+2)]);
+%% data
+d= scatter(y(:,1), y(:,2), 'filled');
+d.SizeData = 2;
+d.AlphaData = 0.75;
+mindata = min(min(y));
+maxdata = max(max(y));
+xlim([(mindata ) (maxdata)]);
+ylim([(mindata ) (maxdata)]);
 
 %% Legend
 hleglines = [];
@@ -75,7 +77,8 @@ for c = [1,2,3,4]
 end
 % hleglines = [hleglines e d];
 % create the legend
-hleg = legend(hleglines,'Polyhedral, \Gamma = 2','Polyhedral, \Gamma = 1.5','Polyhedral, \Gamma = 1.3','Polyhedral, \Gamma = 1', 'Ellipse', 'Data');
+hleg = legend(hleglines,'\Gamma = 2','\Gamma = 1.5','\Gamma = 1.3','\Gamma = 1', 'Data');
 legend()
 xlabel('x_1')
 ylabel('x_2')
+title ('Distribution of arbitrary data and the corresponding 95% confidence polytopes')
