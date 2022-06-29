@@ -13,3 +13,5 @@ synth_incr_n_m,
 real_mean,
 real_real,
 real_div
+
+See ppt "Robust Portfolio Management using Static Factor Models" for general overview
